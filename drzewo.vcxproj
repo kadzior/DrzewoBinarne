@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="drzewo.cpp" />
     <ClCompile Include="drzewoBST.cpp" />
+    <ClCompile Include="node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
