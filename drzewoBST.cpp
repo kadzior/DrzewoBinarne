@@ -21,5 +21,11 @@ private:
         return node;
     }
 
-
+    // Prywatna metoda znajduj¹ca wêze³ o najmniejszej wartoœci
+    Node* findMin(Node* node) {
+        while (node && node->left != nullptr) {
+            node = node->left; // Przechodzenie do najbardziej lewego wêz³a
+        }
+        return node;
+    }
 };
