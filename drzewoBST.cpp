@@ -13,7 +13,6 @@ private:
             inOrder(node->right);
         }
     }
-
     void preOrder(Node* node) {
         if (node != nullptr) {
             cout << node->data << " ";
@@ -21,7 +20,6 @@ private:
             preOrder(node->right);
         }
     }
-
     void postOrder(Node* node) {
         if (node != nullptr) {
             postOrder(node->left);
@@ -29,7 +27,6 @@ private:
             cout << node->data << " ";
         }
     }
-
     void saveToFile(Node* node, ofstream& file) {
         if (node != nullptr) {
             file << node->data << " ";
@@ -37,14 +34,12 @@ private:
             saveToFile(node->right, file);
         }
     }
-
 public:
     BST() : root(nullptr) {}
 
     void addElement(int value) {
         root = addElement(root, value);
     }
-
     void displayTree(const string& order) {
         if (order == "inorder") {
             inOrder(root);
@@ -60,7 +55,6 @@ public:
         }
         cout << endl;
     }
-
     void saveToFile(const string& filename) {
         ofstream file(filename);
         if (file.is_open()) {
