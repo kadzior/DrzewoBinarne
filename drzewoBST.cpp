@@ -67,4 +67,9 @@ public:
     void addElement(int value) {
         root = addElement(root, value);
     }
+    
+    // Metoda publiczna usuwaj¹ca element o zadanej wartoœci
+    void deleteElement(int value) {
+        root = deleteElement(root, value);
+    }
 };
