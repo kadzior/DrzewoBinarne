@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "./node.cpp"
 using namespace std;
 
 class BST {
