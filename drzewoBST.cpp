@@ -59,4 +59,12 @@ private:
         }
         return node;
     }
+public:
+    // Konstruktor inicjalizuj¹cy puste drzewo
+    BST() : root(nullptr) {}
+
+    // Metoda publiczna dodaj¹ca element do drzewa
+    void addElement(int value) {
+        root = addElement(root, value);
+    }
 };
