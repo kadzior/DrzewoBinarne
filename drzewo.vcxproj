@@ -130,6 +130,7 @@
     <ClCompile Include="DodanieKlasy.cpp" />
     <ClCompile Include="drzewo.cpp" />
     <ClCompile Include="drzewoBST.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
