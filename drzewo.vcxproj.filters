@@ -21,7 +21,11 @@
     <ClCompile Include="drzewoBST.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+
     <ClCompile Include="DodanieKlasy.cpp">
+
+    <ClCompile Include="node.cpp">
+
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
