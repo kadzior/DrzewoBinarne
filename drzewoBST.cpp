@@ -30,6 +30,14 @@ private:
         }
     }
 
+    void saveToFile(Node* node, ofstream& file) {
+        if (node != nullptr) {
+            file << node->data << " ";
+            saveToFile(node->left, file);
+            saveToFile(node->right, file);
+        }
+    }
+
 public:
     BST() : root(nullptr) {}
 
@@ -40,14 +48,27 @@ public:
     void displayTree(const string& order) {
         if (order == "inorder") {
             inOrder(root);
-        } else if (order == "preorder") {
+        }
+        else if (order == "preorder") {
             preOrder(root);
-        } else if (order == "postorder") {
+        }
+        else if (order == "postorder") {
             postOrder(root);
-        } else {
+        }
+        else {
             cout << "Invalid order" << endl;
         }
         cout << endl;
     }
 
+    void saveToFile(const string& filename) {
+        ofstream file(filename);
+        if (file.is_open()) {
+            saveToFile(root, file);
+            file.close();
+        }
+        else {
+            cout << "Unable to open file" << endl;
+        }
+    }
 };
