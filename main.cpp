@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+
+#include "./node.hpp"
+
 #include "./drzewoBST.cpp"
 #include "./DodanieKlasy.cpp"
 

@@ -128,10 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DodanieKlasy.cpp" />
-    <ClCompile Include="drzewo.cpp" />
     <ClCompile Include="drzewoBST.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="node.cpp" />
+    <ClCompile Include="node.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

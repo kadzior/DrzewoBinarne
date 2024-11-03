@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "./node.cpp"
+
+#include "Node.hpp"
+
 using namespace std;
 
 class BST {
@@ -91,6 +93,14 @@ private:
 public:
     // Konstruktor inicjalizuj¹cy puste drzewo
     BST() : root(nullptr) {}
+
+    Node* getRoot() {
+        return root;
+    }
+
+    void setRoot(Node* _root) {
+        root = _root;
+    }
 
     // Metoda publiczna dodaj¹ca element do drzewa
     void addElement(int value) {

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "./node.cpp"
+
+#include "./node.hpp"
+
 using namespace std;
 
 // Klasa reprezentuj¹ca operacje zwi¹zane z plikami dla drzewa BST
@@ -22,7 +24,7 @@ public:
 private:
     static void saveToFile(Node* node, ofstream& file) {
         if (node != nullptr) {
-            file.write(reinterpret_cast<char>(&node->data), sizeof(node->data));
+            file.write(reinterpret_cast<char*>(&node->data), sizeof(node->data));
             saveToFile(node->left, file);
             saveToFile(node->right, file);
         }
@@ -30,7 +32,7 @@ private:
 
 public:
     // Metoda wczytuj¹ca drzewo z pliku binarnego
-    static Node loadFromBinaryFile(const string& filename) {
+    static Node* loadFromBinaryFile(const string& filename) {
         ifstream file(filename, ios::binary);
         if (file.is_open()) {
             Node* root = loadFromFile(file); // Rekurencyjne wczytanie drzewa z pliku binarnego
@@ -47,8 +49,8 @@ public:
 private:
     static Node* loadFromFile(ifstream& file) {
         int value;
-        if (file.read(reinterpret_cast<char>(&value), sizeof(value))) {
-            Node newNode = new Node(value);
+        if (file.read(reinterpret_cast<char*>(&value), sizeof(value))) {
+            Node* newNode = new Node(value);
             newNode->left = loadFromFile(file);
             newNode->right = loadFromFile(file);
             return newNode;
