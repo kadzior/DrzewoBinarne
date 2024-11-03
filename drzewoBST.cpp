@@ -2,15 +2,14 @@
 #include <fstream>
 using namespace std;
 
-
 class BST {
 private:
-    Node* root; // WskaŸnik do korzenia drzewa
+    Node* root; // WskaÅ¸nik do korzenia drzewa
 
-    // Prywatna metoda dodaj¹ca element do drzewa
+    // Prywatna metoda dodajÂ¹ca element do drzewa
     Node* addElement(Node* node, int value) {
         if (node == nullptr) {
-            return new Node(value); // Tworzenie nowego wêz³a, jeœli aktualny jest pusty
+            return new Node(value); // Tworzenie nowego wÃªzÂ³a, jeÅ“li aktualny jest pusty
         }
         if (value < node->data) {
             node->left = addElement(node->left, value); // Rekurencyjne dodawanie do lewego poddrzewa
@@ -21,18 +20,18 @@ private:
         return node;
     }
 
-    // Prywatna metoda znajduj¹ca wêze³ o najmniejszej wartoœci
+    // Prywatna metoda znajdujÂ¹ca wÃªzeÂ³ o najmniejszej wartoÅ“ci
     Node* findMin(Node* node) {
         while (node && node->left != nullptr) {
-            node = node->left; // Przechodzenie do najbardziej lewego wêz³a
+            node = node->left; // Przechodzenie do najbardziej lewego wÃªzÂ³a
         }
         return node;
     }
 
-    // Prywatna metoda usuwaj¹ca element z drzewa
+    // Prywatna metoda usuwajÂ¹ca element z drzewa
     Node* deleteElement(Node* node, int value) {
         if (node == nullptr) {
-            return node; // Jeœli wêze³ jest pusty, nic nie robimy
+            return node; // JeÅ“li wÃªzeÂ³ jest pusty, nic nie robimy
         }
         if (value < node->data) {
             node->left = deleteElement(node->left, value); // Szukanie elementu w lewym poddrzewie
@@ -41,35 +40,62 @@ private:
             node->right = deleteElement(node->right, value); // Szukanie elementu w prawym poddrzewie
         }
         else {
-            // Wêze³ do usuniêcia zosta³ znaleziony
+            // WÃªzeÂ³ do usuniÃªcia zostaÂ³ znaleziony
             if (node->left == nullptr) {
-                Node* temp = node->right; // Jeœli brak lewego potomka, ustawiamy prawego jako nastêpcê
+                Node* temp = node->right; // JeÅ“li brak lewego potomka, ustawiamy prawego jako nastÃªpcÃª
                 delete node;
                 return temp;
             }
             else if (node->right == nullptr) {
-                Node* temp = node->left; // Jeœli brak prawego potomka, ustawiamy lewego jako nastêpcê
+                Node* temp = node->left; // JeÅ“li brak prawego potomka, ustawiamy lewego jako nastÃªpcÃª
                 delete node;
                 return temp;
             }
-            // Wêze³ ma dwóch potomków, znajdujemy najmniejszy element w prawym poddrzewie
+            // WÃªzeÂ³ ma dwÃ³ch potomkÃ³w, znajdujemy najmniejszy element w prawym poddrzewie
             Node* temp = findMin(node->right);
-            node->data = temp->data; // Zastêpujemy wartoœæ
+            node->data = temp->data; // ZastÃªpujemy wartoÅ“Ã¦
             node->right = deleteElement(node->right, temp->data); // Usuwamy najmniejszy element
         }
         return node;
     }
 public:
-    // Konstruktor inicjalizuj¹cy puste drzewo
+    // Konstruktor inicjalizujÂ¹cy puste drzewo
     BST() : root(nullptr) {}
 
-    // Metoda publiczna dodaj¹ca element do drzewa
+    // Metoda publiczna dodajÂ¹ca element do drzewa
     void addElement(int value) {
         root = addElement(root, value);
     }
     
-    // Metoda publiczna usuwaj¹ca element o zadanej wartoœci
+    // Metoda publiczna usuwajÂ¹ca element o zadanej wartoÅ“ci
     void deleteElement(int value) {
         root = deleteElement(root, value);
     }
+    // Metoda publiczna usuwajÂ¹ca caÂ³e drzewo
+    void deleteTree() {
+        while (root != nullptr) {
+            deleteElement(root->data); // Usuwanie elementÃ³w aÂ¿ drzewo bÃªdzie puste
+        }
+    }
+    
+    // Metoda publiczna znajdujÂ¹ca Å“cieÂ¿kÃª do elementu o zadanej wartoÅ“ci
+    void findPath(int value) {
+        Node* current = root;
+        while (current != nullptr) {
+            cout << current->data << " ";
+            if (value == current->data) {
+                cout << endl;
+                return;
+            }
+            else if (value < current->data) {
+                current = current->left; // Przechodzenie do lewego poddrzewa
+            }
+            else {
+                current = current->right; // Przechodzenie do prawego poddrzewa
+            }
+        }
+        cout << "Value not found" << endl; // Element nie zostaÂ³ znaleziony
+    }
 };
+
+
