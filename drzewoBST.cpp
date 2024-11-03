@@ -28,4 +28,35 @@ private:
         }
         return node;
     }
+
+    // Prywatna metoda usuwaj¹ca element z drzewa
+    Node* deleteElement(Node* node, int value) {
+        if (node == nullptr) {
+            return node; // Jeœli wêze³ jest pusty, nic nie robimy
+        }
+        if (value < node->data) {
+            node->left = deleteElement(node->left, value); // Szukanie elementu w lewym poddrzewie
+        }
+        else if (value > node->data) {
+            node->right = deleteElement(node->right, value); // Szukanie elementu w prawym poddrzewie
+        }
+        else {
+            // Wêze³ do usuniêcia zosta³ znaleziony
+            if (node->left == nullptr) {
+                Node* temp = node->right; // Jeœli brak lewego potomka, ustawiamy prawego jako nastêpcê
+                delete node;
+                return temp;
+            }
+            else if (node->right == nullptr) {
+                Node* temp = node->left; // Jeœli brak prawego potomka, ustawiamy lewego jako nastêpcê
+                delete node;
+                return temp;
+            }
+            // Wêze³ ma dwóch potomków, znajdujemy najmniejszy element w prawym poddrzewie
+            Node* temp = findMin(node->right);
+            node->data = temp->data; // Zastêpujemy wartoœæ
+            node->right = deleteElement(node->right, temp->data); // Usuwamy najmniejszy element
+        }
+        return node;
+    }
 };
